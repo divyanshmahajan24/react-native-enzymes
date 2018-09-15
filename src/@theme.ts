@@ -20,7 +20,7 @@ export type IThemeInterface = typeof theme;
 
 export default theme;
 
-export const globalCss = () => injectGlobal`
+export const globalCSS = () => injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
   html {
     font-size: 14px;

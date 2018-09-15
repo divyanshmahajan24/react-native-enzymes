@@ -6,16 +6,22 @@ import { createBrowserHistory } from 'history';
 
 import { configureStore } from 'app/store';
 import { App } from '@containers/app';
+import { ThemeProvider } from '@styled';
+import theme, { globalCSS } from '@theme';
+
+globalCSS();
 
 // prepare store
 const history = createBrowserHistory();
 const store = configureStore(history);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
-  </Provider>,
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
+    </Provider>
+  </ThemeProvider>,
   document.getElementById('root'),
 );
