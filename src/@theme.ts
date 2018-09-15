@@ -2,14 +2,12 @@ import { injectGlobal } from 'styled-components';
 
 const theme = {
   colors: {
-    primary: '#dd4c4c',
-    grey: '#ededed',
-    darkGrey: '#d4d4d4',
-    inactiveGrey: '#76797C',
-    activeRed: '#D93737',
-    lightGrey: '#fafafa',
+    primary: '#008cdd',
+    gray: '#ededed',
+    lightGray: '#f8f8f8',
+    darkGray: '#d2d2d2',
+    red: '#d93737',
     white: '#ffffff',
-    stoneLight: '#e7e4e4',
   },
   weights: [400, 500, 700],
   _htmlFontSize: 10,

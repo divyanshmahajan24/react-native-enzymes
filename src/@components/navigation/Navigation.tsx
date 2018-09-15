@@ -28,6 +28,12 @@ const Tab = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+
+  &:hover {
+    ${(props) => `
+      color: ${props.theme.colors.primary}`};
+  }
 
   &:first-child {
     border-right: 1px solid #ededed;
@@ -35,8 +41,6 @@ const Tab = styled.div`
 `;
 
 const TabTitle = styled.div``;
-
-// const TabContent = styled.div``;
 
 class Navigation extends React.Component<IProps, {}> {
   render() {
