@@ -23,7 +23,7 @@ const TabList = styled.div`
 `;
 
 const ListItem = styled.div`
-  padding: 8px 8px;
+  padding: 10px 8px;
   display: flex;
   align-items: center;
   cursor: pointer;
