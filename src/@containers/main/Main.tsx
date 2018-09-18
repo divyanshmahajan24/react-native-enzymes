@@ -3,6 +3,7 @@ import * as React from 'react';
 import * as styledComponents from '@styled';
 import { Navigation } from '@components/navigation';
 import theme from '@theme';
+// import switchTabs from '@assets/background';
 
 const { default: styled } = styledComponents;
 
@@ -72,12 +73,28 @@ class Main extends React.Component<IState> {
 
   public drawCurrentTabs = () => {
     chrome.tabs.query({}, (tabs) => {
-      this.setState({ openTabs: tabs });
+      this.setState({ openTabs: tabs }, () => {
+        console.log(this.state.openTabs);
+      });
     });
   };
 
   public componentDidMount() {
     this.drawCurrentTabs();
+  }
+
+  private switchTabs(id: number) {
+    chrome.tabs.get(id, function(tab) {
+      chrome.windows.getCurrent({}, (window) => {
+        if (tab.windowId === window.id) {
+          chrome.tabs.update(tab.id!, { selected: true });
+        } else {
+          chrome.windows.update(tab.windowId, { focused: true }, () => {
+            chrome.tabs.update(tab.id!, { selected: true });
+          });
+        }
+      });
+    });
   }
 
   render() {
@@ -90,7 +107,7 @@ class Main extends React.Component<IState> {
           {!!openTabs &&
             openTabs.map((tab) => {
               return (
-                <ListItem>
+                <ListItem onClick={() => this.switchTabs(parseInt(tab.id))}>
                   <Icon>
                     <img src={tab.favIconUrl} alt="" />
                   </Icon>
