@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { Omit } from 'utility-types';
+import { NavLink } from 'react-router-dom';
 
 import * as styledComponents from '@styled';
+import theme from '@theme';
 
 type IDivProps = Omit<JSX.IntrinsicElements['div'], 'ref' | 'title'>;
 
@@ -9,6 +11,7 @@ const { default: styled } = styledComponents;
 
 interface ITabProps extends IDivProps {
   title: string;
+  link: string;
   icon?: string;
 }
 
@@ -20,7 +23,21 @@ interface IProps {
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
-  border-top: 1px solid #ededed;
+  border-top: 1px solid ${theme.colors.gray};
+`;
+
+const LinkItem = styled(NavLink)`
+  padding: 16px 0;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  text-decoration: none;
+  color: ${theme.colors.neutral};
+  font-weight: ${theme.weights[1]}
+
+  &:hover {
+    color: ${theme.colors.primary};
+  }
 `;
 
 const Tab = styled.div`
@@ -30,13 +47,8 @@ const Tab = styled.div`
   align-items: center;
   cursor: pointer;
 
-  &:hover {
-    ${(props) => `
-      color: ${props.theme.colors.primary}`};
-  }
-
   &:first-child {
-    border-right: 1px solid #ededed;
+    border-right: 1px solid ${theme.colors.gray};
   }
 `;
 
@@ -50,7 +62,11 @@ class Navigation extends React.Component<IProps, {}> {
       <Wrapper {...this.props}>
         {list.map((tab, index) => (
           <Tab key={index}>
-            <TabTitle>{tab.title}</TabTitle>
+            <TabTitle>
+              <LinkItem to={tab.link} activeStyle={{ color: theme.colors.primary }}>
+                {tab.title}
+              </LinkItem>
+            </TabTitle>
           </Tab>
         ))}
       </Wrapper>

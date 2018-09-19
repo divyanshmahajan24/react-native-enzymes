@@ -5,11 +5,12 @@ const theme = {
     primary: '#008cdd',
     gray: '#ededed',
     lightGray: '#f8f8f8',
-    darkGray: '#d2d2d2',
+    darkGray: '#919496',
+    neutral: '#2d2d2d',
     red: '#d93737',
     white: '#ffffff',
   },
-  weights: [400, 500, 700],
+  weights: [400, 500, 600, 700],
   _htmlFontSize: 10,
   baseFontSize: 1.4, // in rem
 };

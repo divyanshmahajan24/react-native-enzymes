@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { Route, Switch } from 'react-router';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 
 import { Main } from '@containers/main';
 
 const App = hot(module)(() => (
-  <Switch>
+  <Router>
     <Route path="/" component={Main} />
-  </Switch>
+  </Router>
 ));
 
 export default App;
